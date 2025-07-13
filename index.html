@@ -1,0 +1,1941 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <title>Social Hikers</title>
+  <style>
+    :root {
+      --primary: #f12653;
+      --light:   #fefefe;
+      --dark:    #201e1e;
+    }
+
+    /* Reset & base */
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body {
+      font-family: sans-serif;
+      line-height: 1.5;
+      padding-top: 64px;
+      background: #fafafa;
+      color: var(--dark);
+    }
+    a { text-decoration: none; color: inherit; }
+
+    /* Header container */
+    .site-header {
+      position: fixed; top:0; left:0; right:0;
+      background: var(--light);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      border-bottom-left-radius: 12px;
+      border-bottom-right-radius:12px;
+      z-index: 1000;
+    }
+    .site-header .container {
+      max-width: 1100px;
+      margin: auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.75rem 1rem;
+      gap: 1rem;
+    }
+    /* Force order for consistent placement */
+    .logo       { order: 1; }
+    nav.main-nav{ order: 2; }
+    .cta-group  { order: 3; }
+    .menu-toggle{ order: 4; }
+
+    /* Logo */
+    .logo img { height:56px; display:block; }
+
+    /* Main nav (desktop) */
+    nav.main-nav {
+      flex: 1;
+      margin: 0 1.5rem;
+    }
+    nav.main-nav ul {
+      list-style: none;
+      display: flex;
+      gap: 1.5rem;
+    }
+    nav.main-nav ul li a {
+      font-weight: 500;
+      color: var(--dark);
+      transition: color .2s;
+    }
+    nav.main-nav ul li a:hover { color: var(--primary); }
+
+    /* CTA buttons group */
+    .cta-group {
+      display: flex;
+      gap: 0.75rem;
+      align-items: center;
+      white-space: nowrap;
+      padding-left: 80px;
+    }
+    .btn-contact {
+       display: inline-block;
+  padding: 10px 20px;
+  background-color: #000;
+  color: #fff;
+  font-weight: 600;
+  text-decoration: none;
+  border: 2px solid transparent;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 0 #ff2c7d; /* pinkish bottom shadow */
+    }
+    .btn-contact:hover {
+      background-color: #111;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 0 #ff2c7d;
+    }
+    .btn-book {
+      padding: 0.5rem 1rem;
+      font-weight: 600;
+      color: var(--light);
+      background: var(--primary);
+      border: none;
+      border-radius: 4px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+      transition: transform .2s, box-shadow .2s;
+    }
+    .btn-book:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+    }
+
+    /* Hamburger toggle (mobile) */
+    .menu-toggle {
+      display: none;
+      background: var(--primary);
+      border: none;
+      width: 36px; height: 36px;
+      border-radius: 4px;
+      cursor: pointer;
+      position: relative;
+      flex-shrink: 0;
+    }
+    .menu-toggle span,
+    .menu-toggle span::before,
+    .menu-toggle span::after {
+      display: block;
+      background: var(--light);
+      height: 3px; width: 18px;
+      border-radius: 2px;
+      position: absolute;
+      left: 50%; transform: translateX(-50%);
+    }
+    .menu-toggle span { top:50%; transform:translate(-50%, -50%); }
+    .menu-toggle span::before { content: ''; top:-6px; }
+    .menu-toggle span::after  { content: ''; top: 6px; }
+
+    /* Responsive breakpoints */
+    @media (max-width: 768px) {
+      nav.main-nav { display: none; }
+      .menu-toggle { display: block; }
+      /* ensure CTAs shrink if needed */
+      .cta-group { gap: 0.5rem; }
+      .btn-contact, .btn-book { padding: 0.4rem 0.8rem; font-size: 0.9rem; }
+    }
+
+:root {
+  --brand-red: #F12653;
+  --white:     #FFFFFF;
+}
+
+
+:root {
+  --brand-red: #F12653;
+  --white:     #fff;
+}
+
+/* 1. Reset */
+* { box-sizing: border-box; margin:0; padding:0; }
+body { font-family: system-ui, sans-serif; }
+
+/* 2. Hero full-bleed container */
+.hero {
+  position: relative;
+  /* break out of any parent width constraint: */
+  width: 100vw;
+  left: 50%;
+  margin-left: -50vw;
+  
+  min-height: 350px;                      /* adjust as needed */
+  background: url('path/to/your-banner.jpg') center/cover no-repeat;
+  display: flex;
+  align-items: center;
+  padding: 2rem 5%;
+}
+
+/* 3. Overlay for contrast */
+.hero__overlay {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.4);
+  z-index: 0;
+}
+
+/* 4. Text & buttons (on top of overlay) */
+.hero__content {
+  position: relative;
+  z-index: 1;
+  max-width: 600px;
+  color: var(--white);
+}
+.hero__title {
+  font-size: 2.5rem;
+  font-weight: 600;
+  line-height: 1.2;
+  margin-bottom: 0.5rem;
+}
+.hero__title strong {
+  font-weight: 800;
+}
+.hero__subtitle {
+  font-size: 1.125rem;
+  margin-bottom: 1.5rem;
+}
+.hero__buttons {
+  display: flex;
+  gap: 1rem;
+}
+.btn {
+  text-decoration: none;
+  font-weight: 600;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  transition: transform 0.15s;
+}
+.btn:hover {
+  transform: translateY(-2px);
+}
+.btn--primary {
+  background-color: var(--brand-red);
+  color: var(--white);
+}
+.btn--secondary {
+  background: transparent;
+  border: 2px solid var(--white);
+  color: var(--white);
+}
+
+/* 5. Responsive tweaks */
+@media (max-width: 768px) {
+  .hero {
+    flex-direction: column;
+    text-align: center;
+    padding: 2rem 3%;
+    min-height: auto;
+  }
+  .hero__title {
+    font-size: 2rem;
+  }
+  .hero__buttons {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+}
+
+
+
+
+
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="container">
+      <a href="#" class="logo"><img src="IMAGES /logo-white png.png" alt="Social Hikers Logo"></a>
+      <nav class="main-nav">
+        <ul>
+          <li><a href="#">Home</a></li>
+          <li><a href="#">About Us</a></li>
+          <li><a href="#">Services</a></li>
+          <li><a href="#">Portfolio</a></li>
+          <li><a href="#">Blog</a></li>
+        </ul>
+      </nav>
+      <div class="cta-group">
+        <a href="#contact" class="btn-contact">BOOK A CALL </a>
+      </div>
+      <button class="menu-toggle" aria-label="Toggle menu"><span></span></button>
+    </div>
+
+    
+  </header>
+
+
+<body>
+
+
+<style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+    }
+]
+
+
+footer, .bottom-space {
+  display: none; /* or remove margin/padding */
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+.hero-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: #e50964;
+  background-image: url('your-bg.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  color: white;
+  overflow: hidden;
+  padding: 0 5%;
+  min-height: 0vh;
+  height: auto; /* ✅ content decides final height */
+}
+
+
+.hero {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 100px 5%;
+  background-color: #d0133f;
+  background-image: url('IMAGES/final.png');
+  background-repeat: repeat;
+  background-size: 100px auto; /* 👈 Adjust this size */
+  color: #fff;
+}
+
+
+    .hero-text {
+      max-width: 50%;
+    }
+
+    .hero-text h1 {
+      font-size: 4rem;
+      margin-bottom: 30px;
+      font-weight: 800;
+      line-height: 1.2;
+    }
+
+    .hero-text p {
+      font-size: 1.5rem;
+      margin-bottom: 50px;
+      line-height: 1.7;
+      color: #fff;
+    }
+
+    .hero-buttons button {
+      padding: 16px 32px;
+      font-size: 1.1rem;
+      margin-right: 20px;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .primary-btn {
+      display: inline-block;
+  padding: 10px 20px;
+  background-color: #000;
+  color: #fff;
+  font-weight: 600;
+  text-decoration: none;
+  border: 2px solid transparent;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 0 #ff2c7d; /* pinkish bottom shadow */
+    }
+
+    .primary-btn:hover {
+       background-color: #111;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 0 #ff2c7d;
+    }
+
+    .secondary-btn {
+       display: inline-block;
+  padding: 10px 20px;
+  background-color: white;
+  color: black;
+  font-weight: 600;
+  text-decoration: none;
+  border: 2px solid transparent;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 0 #ff2c7d; /* pinkish bottom shadow */
+    }
+
+   
+.hero-image {
+  position: relative;
+  text-align: center;
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+    .hero-image img {
+    width: 100%;
+  height: auto;
+  display: block;
+  margin-top: 30px;
+    }
+
+
+    .hero-caption {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: white;
+  font-family: sans-serif;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
+}
+
+.hero-caption p {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+    @media (max-width: 900px) {
+      .hero {
+        flex-direction: column;
+        text-align: center;
+        padding: 80px 20px;
+      }
+
+      .hero-text {
+        max-width: 100%;
+        margin-bottom: 40px;
+      }
+
+      .hero-text h1 {
+        font-size: 2.5rem;
+      }
+
+      .hero-text p {
+        font-size: 1.2rem;
+      }
+
+      .hero-buttons button {
+        margin-bottom: 15px;
+      }
+    }
+
+    
+    .hero-section {
+  flex-direction: row; /* side by side on large screen */
+  align-items: center;
+}
+
+@media (max-width: 1024px) {
+  .hero-section {
+    flex-direction: column; /* stack on small screen */
+  }
+
+
+ 
+
+}
+
+
+  </style>
+</head>
+<body>
+
+  <section class="hero">
+    <div class="hero-text">
+      <h1>Dear Client, You're Cute…</h1>
+      <p>Now be smart & click one of the buttons below 😉  
+      <br>We do Branding, Ads, Content, Production — full Bollywood-style marketing for your brand.</p>
+      <div class="hero-buttons">
+        <button class="primary-btn">Get Started</button>
+        <button class="secondary-btn">Request Callback</button>
+      </div>
+    </div>
+
+   
+<div class="hero-image">
+  <img src="IMAGES /ChatGPT Image Jul 12, 2025, 12_02_48 AM.png" alt="Mr. Max – CCO" />
+  <div class="hero-caption">
+    <p>Mr. Max</p>
+    <p>CCO – Chief Cuteness Officer</p>
+  </div>
+</div>
+
+
+
+
+  </section>
+
+  <!-- Featured On Section -->
+<section style="background: #fff; padding: 40px 20px; text-align: center;">
+  <h2 style="font-size: 28px; font-weight: 700; margin-bottom: 30px; color: #000;">Featured On</h2>
+  <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 40px; align-items: center;">
+    <img src="IMAGES /image (1).png" alt="Forbes" style="height: 40px; " />
+    <img src="IMAGES /Deccan-Business-PNG-300x104.png" alt="YourStory" style="height: 40px;" />
+    <img src="IMAGES /1_cbyNf_R8Ld_ZzKVv07Ezag.webp" alt="Entrepreneur" style="height: 40px;" />
+    <img src="IMAGES /Entrepreneur-Saga-PNG-300x59.webp" alt="NDTV" style="height: 40px;" />
+    <img src="IMAGES /logo_677ff553f23d2.png" alt="GQ" style="height: 40px;" />
+  </div>
+</section>
+
+<style>
+  /* Featured On Section */
+.featured-on {
+  background: #ffffff;
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.featured-on h2 {
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 40px;
+  color: #000000;
+}
+
+.featured-logos {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 40px;
+  align-items: center;
+}
+
+.featured-logos img {
+  height: 40px;
+  filter: grayscale(100%);
+  transition: all 0.3s ease-in-out;
+  opacity: 0.8;
+}
+
+.featured-logos img:hover {
+  filter: grayscale(0%);
+  opacity: 1;
+  transform: scale(1.05);
+}
+
+</style>
+
+
+<!-- FLYING DUCK MARKETING SECTION -->
+<section style="padding: 80px 5%; background-color: #ffffff;">
+  <div style="max-width: 1200px; margin: auto; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 40px;">
+    
+    <!-- Left: Duck Image -->
+  <div style="flex: 1 1 300px; max-width: 300px;">
+  <img 
+    src="IMAGES /assets_task_01jzyx0dd1fqr908cbceyhzrgz_1752310075_img_0.webp" 
+    alt="Duck Working at Computer" 
+    style="width: 100%; height: auto; border-radius: 12px; box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);" 
+  />
+
+  
+</div>
+
+
+    <!-- Right: Text Content -->
+    <div style="flex: 1 1 480px;">
+      <h2 style="color: #f12653; font-size: 2.5rem; font-weight: 800; margin-bottom: 0.5rem;">SOCIAL HIKERS </h2>
+      <h3 style="font-size: 1.2rem; font-weight: 700; margin-bottom: 1rem;">WHERE CREATIVITY MEETS MEDIA , TECH AND PRODUCTION </h3>
+      <p style="font-size: 1rem; color: #444; line-height: 1.6; margin-bottom: 2rem;">
+        We provide tailored digital marketing services that help businesses succeed online. Since our establishment in 2019, Team Social Hikers has been dedicated to helping brands and businesses flourish in the online world.
+      </p>
+      <a href="#" style="padding: 12px 24px; background: #000; color: #fff; font-weight: 600; border-radius: 6px; box-shadow: 3px 3px 0 #f12653; text-decoration: none; transition: all 0.2s ease;">LEARN MORE</a>
+    </div>
+
+    
+
+  </div>
+  
+
+<style>
+  .metrics-grid {
+    max-width: 1200px;
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 20px;
+    text-align: center;
+  }
+
+  .metric-box {
+    flex: 1 1 220px;
+    border: 2px solid #000;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 4px 4px 0 #000;
+    background: #fff;
+    transition: transform 0.3s ease;
+  }
+
+  .metric-box:hover {
+    transform: translateY(-4px);
+  }
+
+  .metric-box h3 {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .metric-box p {
+    margin: 0;
+    font-size: 1rem;
+  }
+
+  /* 📱 Mobile: Stack vertically */
+  @media (max-width: 768px) {
+    .metrics-grid {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .metric-box {
+      width: 100%;
+      max-width: 300px;
+    }
+  }
+</style>
+<section class="stats-section">
+  <div class="stats-container">
+    <div class="stat-box">
+      <h3>50+</h3>
+      <p>Projects Completed</p>
+    </div>
+    <div class="stat-box">
+      <h3>20+</h3>
+      <p>Clients</p>
+    </div>
+    <div class="stat-box">
+      <h3>100+</h3>
+      <p>Cup of Coffee</p>
+    </div>
+    <div class="stat-box">
+      <h3>6+</h3>
+      <p>Years in business</p>
+    </div>
+  </div>
+
+  <style>
+    .stats-section {
+  padding: 60px 5%;
+  background-color: #ffffff;
+}
+
+.stats-container {
+  max-width: 1200px;
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+.stat-box {
+  flex: 1 1 200px;
+  max-width: 220px;
+  padding: 24px;
+  border: 2px solid #000;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 3px 3px 0 #000;
+  background-color: #fff;
+  transition: transform 0.3s ease;
+}
+
+.stat-box:hover {
+  transform: translateY(-5px);
+}
+
+.stat-box h3 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.stat-box p {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #333;
+}
+@media (max-width: 768px) {
+  .stat-box {
+    flex: 1 1 calc(50% - 20px);
+    max-width: calc(50% - 20px);
+  }
+}
+.learn-btn {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #000;
+  color: #fff;
+  font-weight: 600;
+  text-decoration: none;
+  border: 2px solid transparent;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 0 #ff2c7d; /* pinkish bottom shadow */
+}
+
+.learn-btn:hover {
+  background-color: #111;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 0 #ff2c7d;
+}
+
+  </style>
+</section>
+
+</section>
+
+
+
+<!-- OUR SERVICES SECTION -->
+<section class="services-section">
+  <div class="services-container">
+    <h2 class="services-heading">Our Services</h2>
+    <p class="services-subheading">TAILORED DIGITAL SOLUTIONS FOR EVERY NEED</p>
+
+    <div class="services-cards">
+      <!-- CARD 1 -->
+      <div class="service-card">
+
+        <video class="service-img" autoplay loop muted playsinline>
+  <source src="video /7224594_Film_Filming_3840x2160.mp4" type="video/mp4" />
+  Your browser does not support the video tag.
+
+  <style>
+    .service-img {
+  width: 100%;
+  max-width: 320px; /* adjust based on layout */
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  object-fit: cover;
+  display: block;
+  margin: 0 auto;
+}
+
+  </style>
+</video>
+
+
+
+
+        <h3>Media</h3>
+        <p>Transform your brand with captivating visuals and user-centric design</p>
+        <ul>
+         <li>✔️ Creative Designing</li>
+  <li>✔️ Content Development</li>
+  <li>✔️ Content Amplification</li>
+  <li>✔️ Meme Marketing</li>
+  <li>✔️ Influencer Marketing</li>
+  <li>✔️ Viral Engineering</li>
+  <li>✔️ Ad Film Production</li>
+  <li>✔️ Product Photography & Shoots</li>
+        </ul>
+        <a href="#" class="explore-btn">EXPLORE SERVICES</a>
+      </div>
+
+      <!-- CARD 2 -->
+      <div class="service-card">
+
+        <video class="service-img" autoplay loop muted playsinline>
+  <source src="video /7021938_Business_Brainstorming_3840x2160.mov" type="video/mp4" />
+  Your browser does not support the video tag.
+
+  <style>
+    .service-img {
+  width: 100%;
+  max-width: 320px; /* adjust based on layout */
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  object-fit: cover;
+  display: block;
+  margin: 0 auto;
+}
+
+  </style>
+</video>
+        <h3>Marketing </h3>
+        <p>Bring your ideas to life with custom-built websites and innovative applications</p>
+        <ul>
+          <li>✔️ Paid Ads (Meta, Google, LinkedIn)</li>
+  <li>✔️ Social Media Management</li>
+  <li>✔️ Search Engine Optimization (SEO)</li>
+  <li>✔️ Pay Per Click (PPC) Ads</li>
+  <li>✔️ Branding & Identity Design</li>
+  <li>✔️ Influencer Collaborations</li>
+  <li>✔️ Content Strategy & Campaigns</li
+        </ul>
+        <a href="#" class="explore-btn">EXPLORE SERVICES</a>
+      </div>
+
+      <!-- CARD 3 -->
+      <div class="service-card">
+        <img src="images/marketing.png" alt="Marketing" class="service-img" />
+        <h3>Technology</h3>
+        <p>Drive growth and expand your reach with result-oriented digital marketing solutions</p>
+        <ul>
+         <li>✔️ Development </li>
+  <li>✔️ WhatsApp Automation</li>
+  <li>✔️ Business Process Automation</li>
+  <li>✔️ CRM Integration</li>
+  <li>✔️ Chatbot Development</li>
+  <li>✔️ API Integrations</li>
+        </ul>
+        <a href="#" class="explore-btn">EXPLORE SERVICES</a>
+      </div>
+    </div>
+  </div>
+
+  <style>
+    .services-section {
+  background-color: #F12653;
+  padding: 80px 5%;
+}
+
+.services-container {
+  max-width: 1200px;
+  margin: auto;
+  text-align: center;
+}
+
+.services-heading {
+  color: white;
+  font-size: 2.8rem;
+  font-weight: 800;
+  margin-bottom: 0.5rem;
+}
+
+.services-subheading {
+  font-weight: 600;
+  font-size: 1rem;
+  margin-bottom: 2.5rem;
+  letter-spacing: 1px;
+}
+
+.services-cards {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 32px;
+}
+
+.service-card {
+  background: white;
+  border-radius: 12px;
+  padding: 30px 20px;
+  flex: 1 1 300px;
+  box-shadow: 6px 6px 0 #000;
+  text-align: left;
+  transition: transform 0.2s;
+}
+
+.service-card:hover {
+  transform: translateY(-5px);
+}
+
+.service-img {
+  width: 100%;
+  height: 180px;
+  object-fit: contain;
+  border: 1px solid #ddd;
+  margin-bottom: 20px;
+}
+
+.service-card h3 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.service-card p {
+  font-size: 1rem;
+  margin-bottom: 16px;
+  color: #444;
+}
+
+.service-card ul {
+  list-style: none;
+  padding-left: 0;
+  margin-bottom: 20px;
+}
+
+.service-card ul li {
+  margin: 6px 0;
+  font-size: 0.95rem;
+}
+
+.explore-btn {
+   display: inline-block;
+  padding: 10px 20px;
+  background-color: #000;
+  color: #fff;
+  font-weight: 600;
+  text-decoration: none;
+  border: 2px solid transparent;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 0 #ff2c7d; /* pinkish bottom shadow */
+}
+
+.explore-btn:hover {
+ background-color: #111;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 0 #ff2c7d;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .services-cards {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .service-card {
+    max-width: 100%;
+  }
+
+  .services-heading {
+    font-size: 2rem;
+  }
+}
+
+  </style>
+</section>
+
+
+<section class="clients-section">
+  <h2 class="section-title">Our Clients</h2>
+  <p class="section-subtitle">TRUSTED BY LEADING BRANDS ACROSS INDUSTRIES</p>
+
+  <div class="clients-carousel">
+    <div class="client-logo"><img src="IMAGES /new-logo (1).webp" alt="Zicom" /></div>
+    <div class="client-logo"><img src="IMAGES /gaill.png" alt="Zicom SaaS" /></div>
+    <div class="client-logo"><img src="IMAGES /Snooze-More-Logo.png" alt="EasyCare" /></div>
+    <div class="client-logo"><img src="IMAGES /Untitled design (5).png" alt="AI-Shams" /></div>
+    <div class="client-logo"><img src="IMAGES /Logo-Big_yellow_4x_81b35f36-83f5-46c4-8a28-af101572b0bd.png_asset_url.avif" alt="Dabur" /></div>
+    <div class="client-logo"><img src="IMAGES /Untitled_design_-_2024-06-19T114141.030.avif" alt="AI-Shams" /></div>
+  </div>
+  <div class="clients-carousel">
+    <div class="client-logo"><img src="IMAGES /Without_Border_1.webp" alt="Zicom" /></div>
+    <div class="client-logo"><img src="IMAGES /logo_15-min.avif" alt="Zicom SaaS" /></div>
+    <div class="client-logo"><img src="IMAGES /face_1.avif" alt="EasyCare" /></div>
+    <div class="client-logo"><img src="IMAGES /319686888_155352963563233_3571205132925887630_n.jpg" alt="AI-Shams" /></div>
+    <div class="client-logo"><img src="IMAGES /Furrvita_Logo.avif" alt="Dabur" /></div>
+    <div class="client-logo"><img src="IMAGES /Logo-removebg-preview.avif" alt="AI-Shams" /></div>
+    <h3> and many more......</h3>
+  </div>
+
+
+  <style>
+    .clients-section {
+  padding: 60px 5%;
+  text-align: center;
+  background: #fff;
+}
+
+.section-title {
+  font-size: 36px;
+  color: #F12653;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.section-subtitle {
+  font-size: 16px;
+  color: #111;
+  font-weight: 600;
+  margin-bottom: 40px;
+}
+
+.clients-carousel {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+.client-logo img {
+  height: 60px;
+  max-width: 120px;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+}
+
+.client-logo img:hover {
+  transform: scale(1.1);
+}
+.brands-launched {
+  padding: 80px 5%;
+  background-color: #F12653;
+  text-align: center;
+}
+
+.brands-launched h2 {
+  font-size: 36px;
+  font-weight: 800;
+  color: white;
+  margin-bottom: 10px;
+}
+
+.brands-launched .subtitle {
+  font-size: 18px;
+  color: black;
+  margin-bottom: 40px;
+}
+
+.brand-card-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  justify-content: center;
+}
+
+.brand-card {
+  background-color: #fff;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+  padding: 30px 20px;
+  width: 260px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  text-align: center;
+}
+
+.brand-card img {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+  margin-bottom: 20px;
+}
+
+.brand-card h3 {
+  font-size: 20px;
+  font-weight: 700;
+  color: #222;
+  margin-bottom: 10px;
+}
+
+.brand-card p {
+  font-size: 14px;
+  color: #555;
+  line-height: 1.6;
+}
+
+.brand-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 24px rgba(0,0,0,0.15);
+}
+
+
+
+  </style>
+</section>
+
+
+<section class="video-showcase">
+  <h2>Premium ADS <bR>Ads that generate sale !! <br> </h3>
+
+  </h2>
+ 
+  
+
+  <div class="video-scroll-container">
+    <div class="video-card">
+      <video src="video /CHEF .mp4" autoplay muted loop playsinline></video>
+    </div>
+    <div class="video-card">
+      <video src="video /sneha ji .mp4" autoplay muted loop playsinline></video>
+    </div>
+    <div class="video-card">
+      <video src="video /srishti .mp4" autoplay muted loop playsinline></video>
+    </div>
+     <div class="video-card">
+      <video src="video /F_1.mp4" autoplay muted loop playsinline></video>
+    </div>
+    
+     <div class="video-card">
+      <video src="video /Copy of 1.mp4" autoplay muted loop playsinline></video>
+    </div>
+     <div class="video-card">
+      <video src="video /Flow-6.mp4" autoplay muted loop playsinline></video>
+    </div>
+
+     <div class="video-card">
+      <video src="video /Copy of 5 (1).mp4" autoplay muted loop playsinline></video>
+    </div>
+
+     <div class="video-card">
+      <video src="video /Flow-5.mp4" autoplay muted loop playsinline></video>
+    </div>
+
+     <div class="video-card">
+      <video src="video /Flow-7.mp4" autoplay muted loop playsinline></video>
+    </div>
+
+     <div class="video-card">
+      <video src="video /flow-8.mp4" autoplay muted loop playsinline></video>
+    </div>
+
+    <div class="video-card">
+      <video src="video /Copy of ALOVERA_Vertical_1.mp4" autoplay muted loop playsinline></video>
+    </div>
+
+    <div class="video-card">
+      <video src="video /AQOCo9XzOYys_-M2N3W267srGFl2-5QSBcCdQduu_AJV5W9_1eMI0g1cYJwU2LGB1lSveJHLXMB90tRHOz0hq7BzgEgy1ceM5c2kbHw.mp4" autoplay muted loop playsinline></video>
+    </div>
+
+    <!-- Add more video-card blocks as needed -->
+  </div>
+
+  <style>
+    .video-showcase {
+  padding: 60px 5%;
+  background-color: #fff;
+}
+
+.video-showcase h2 {
+  font-size: 28px;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.video-scroll-container {
+  display: flex;
+  overflow-x: auto;
+  gap: 20px;
+  scroll-snap-type: x mandatory;
+  padding-bottom: 10px;
+}
+
+.video-card {
+  flex: 0 0 250px;
+  scroll-snap-align: start;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  background-color: #000;
+}
+
+.video-card video {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 16px;
+}
+.video-scroll-container {
+  display: flex;
+  overflow-x: auto;
+  gap: 20px;
+  scroll-snap-type: x mandatory;
+  padding-bottom: 10px;
+
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none;  /* IE 10+ */
+}
+
+.video-scroll-container::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+
+
+  </style>
+</section>
+
+
+<section class="brands-launched">
+  <h2>Brands Launched By Us</h2>
+  <p class="subtitle">We help ideas take off into impactful digital brands</p>
+
+  <div class="brand-card-container">
+    
+    <div class="brand-card">
+      <img src="IMAGES /logo_15-min.avif" alt="Brand 1" />
+      <h3>Layerzz</h3>
+      <br>
+        <a href="#" class="learn-btn">Learn More</a></br> 
+
+    </div>
+
+    <div class="brand-card">
+      <img src="IMAGES /face_1.avif" alt="Brand 2" />
+      <h3>Desii Gbaru </h3>
+      <p>Men Grooming startup built with bold content and viral campaigns.</p>
+      
+ <br>
+        <a href="#" class="learn-btn">Learn More</a></br> 
+    </div>
+
+    <div class="brand-card">
+      <img src="IMAGES /Black Logo.png" alt="Brand 3" />
+      <h3>Pehnawahh</h3>
+      <p>A new age women..</p>
+
+ <br>
+        <a href="#" class="learn-btn">Learn More</a></br> 
+    </div>
+
+
+
+  </div>
+
+  
+</section>
+
+<section class="commercial-ads">
+  <h2>Commercial Ads by Us</h2>
+  <div class="ads-scroll-container">
+
+    <!-- YouTube Video -->
+    <div class="ad-card">
+      <iframe 
+        src="https://www.youtube.com/embed/sSAFi5Wm0b8" 
+        frameborder="0" 
+        allowfullscreen 
+        allow="autoplay; encrypted-media"
+      ></iframe>
+    </div>
+
+    <!-- Instagram/MP4 Video Thumbnail 1 -->
+    <div class="ad-card custom-play-card">
+      <img src="IMAGES /502953955_716063767505881_7586633235823728367_n.jpg" alt="Instagram Reel Thumbnail" />
+      <a href="video /Yessss it’s here, website is now live 🚨Layerzz, my first venture, my first step towards my entr.mp4" target="_blank" class="custom-play-button">▶</a>
+    </div>
+
+    <!-- Instagram/MP4 Video Thumbnail 2 -->
+    <div class="ad-card custom-play-card">
+      <img src="IMAGES /video-capture-t0000.00seg-1106.png" alt="Instagram Reel Thumbnail" />
+      <a href="video /VIDEO-2024-11-26-14-36-59.mp4" target="_blank" class="custom-play-button">▶</a>
+    </div>
+
+    <!-- Instagram/MP4 Video Thumbnail 3 -->
+    <div class="ad-card custom-play-card">
+      <img src="IMAGES /video-capture-t0000.00seg-7776.png" alt="Instagram Reel Thumbnail" />
+      <a href="video /Unlock Your Fitness Potential with Fit Support's Protein Bars That Fuel Your Workouts! - Fitsupport (1080p, h264).mp4" target="_blank" class="custom-play-button">▶</a>
+    </div>
+
+  </div>
+</section>
+
+<style>
+.commercial-ads {
+  padding: 60px 5%;
+  background-color: #fff;
+}
+
+.commercial-ads h2 {
+  font-size: 28px;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.ads-scroll-container {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding-bottom: 10px;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Hide horizontal scrollbar */
+.ads-scroll-container::-webkit-scrollbar {
+  display: none;
+}
+.ads-scroll-container {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.ad-card {
+  flex: 0 0 300px;
+  height: 530px;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  position: relative;
+  background-color: #f9f9f9;
+  scroll-snap-align: start;
+}
+
+.ad-card iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  border-radius: 16px;
+}
+
+.ad-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  border-radius: 16px;
+}
+
+.custom-play-button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(0, 0, 0, 0.6);
+  color: white;
+  font-size: 36px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  transition: background 0.3s ease;
+}
+
+.custom-play-button:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+</style>
+
+<style>
+  .commercial-ads {
+  background-color: #ffffff;
+  padding: 60px 5%;
+  text-align: center;
+}
+
+.commercial-ads h2 {
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 40px;
+  color: #111;
+}
+
+.ads-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+}
+
+.ad-card {
+  width: 320px;
+  aspect-ratio: 9 / 16;
+  background-color: #f9f9f9;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+}
+
+.ad-card iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  border-radius: 16px;
+}
+
+</style>
+
+<!-- CREATIVE WORK  -->
+
+
+
+
+<!-- OUR CREATIVE WORK (HORIZONTAL SCROLL) -->
+<section class="creative-work-scroll py-5">
+  <div class="container">
+    <h2 class="text-center mb-4">Our Creative Work</h2>
+    <div class="creative-scroll-wrapper">
+      
+      <!-- Card 1 -->
+      <div class="creative-card">
+        <img src="IMAGES /Bumrah 2_2.jpg" alt="Campaign 1">
+        <div class="card-body">
+          <h5>Campaign Name 1</h5>
+          <p>Short description of the campaign results and strategy.</p>
+          <a href="#" class="btn-view">View Campaign</a>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="creative-card">
+        <img src="IMAGES/campaign2.jpg" alt="Campaign 2">
+        <div class="card-body">
+          <h5>Campaign Name 2</h5>
+          <p>A brief highlight of the campaign's creative execution.</p>
+          <a href="#" class="btn-view">View Campaign</a>
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="creative-card">
+        <img src="IMAGES/campaign3.jpg" alt="Campaign 3">
+        <div class="card-body">
+          <h5>Campaign Name 3</h5>
+          <p>This campaign made headlines with its originality and impact.</p>
+          <a href="#" class="btn-view">View Campaign</a>
+        </div>
+      </div>
+
+      <!-- Add more cards if needed -->
+
+    </div>
+  </div>
+</section>
+<style>
+
+  .creative-work-scroll {
+  background: #fff;
+}
+
+.creative-work-scroll h2 {
+  font-size: 2rem;
+  color: #f12653;
+  font-weight: 700;
+}
+
+.creative-scroll-wrapper {
+  display: flex;
+  overflow-x: auto;
+  gap: 20px;
+  padding-bottom: 10px;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+}
+
+.creative-card {
+  min-width: 300px;
+  background: #f9f9f9;
+  border-radius: 10px;
+  flex-shrink: 0;
+  scroll-snap-align: start;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease;
+}
+
+.creative-card:hover {
+  transform: translateY(-5px);
+}
+
+.creative-card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.card-body {
+  padding: 15px;
+}
+
+.card-body h5 {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.card-body p {
+  font-size: 0.95rem;
+  color: #555;
+  margin-bottom: 15px;
+}
+
+.btn-view {
+  display: inline-block;
+  padding: 8px 14px;
+  background-color: #f12653;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: 500;
+  transition: background-color 0.3s;
+}
+
+.btn-view:hover {
+  background-color: #d01242;
+}
+
+/* Hide scrollbar for Webkit */
+.creative-scroll-wrapper::-webkit-scrollbar {
+  display: none;
+}
+
+/* Optional: smooth scroll on click or swipe */
+.creative-scroll-wrapper {
+  scroll-behavior: smooth;
+}
+
+</style>
+
+
+
+
+<style>
+  .process-section {
+  padding: 60px 20px;
+  background: #F12653;
+  text-align: center;
+}
+
+.process-section h2 {
+  font-size: 32px;
+  margin-bottom: 40px;
+  color: white;
+}
+
+.process-timeline {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.process-step {
+  background: white;
+  border-radius: 16px;
+  padding: 30px 20px;
+  width: 240px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.process-step:hover {
+  transform: translateY(-5px);
+}
+
+.process-icon {
+  font-size: 36px;
+  margin-bottom: 20px;
+  background: #111;
+  color: white;
+  width: 60px;
+  height: 60px;
+  margin: 0 auto 20px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.process-step h3 {
+  font-size: 20px;
+  margin-bottom: 10px;
+  color: #222;
+}
+
+.process-step p {
+  font-size: 15px;
+  color: #555;
+}
+
+</style>
+
+
+
+
+
+<section class="team-section">
+  <h2>Meet the Team</h2>
+  <p class="team-subtitle">The people making things memetastic and promoting with joy</p>
+
+  <div class="team-grid">
+
+    <!-- Team Member -->
+    <div class="team-member">
+      <div class="team-img" style="background-image: url('IMAGES /IMG_7416.PNG');">
+        <div class="overlay">
+          <div class="info">
+            <h3>Mansi Rana</h3>
+            <p>Co-Founder</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Copy more team members like below -->
+    <div class="team-member">
+      <div class="team-img" style="background-image: url('IMAGES /IMG_0793.jpg');">
+        <div class="overlay">
+          <div class="info">
+            <h3>Lakshay Saini</h3>
+            <p>Co-Founder </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="team-member">
+      <div class="team-img" style="background-image: url('IMAGES /PHOTO-2025-05-31-22-33-19 2.jpg');">
+        <div class="overlay">
+          <div class="info">
+            <h3>Dev Arya</h3>
+            <p>Creative Head </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="team-member">
+      <div class="team-img" style="background-image: url('IMAGES /IMG_3145.jpg');">
+        <div class="overlay">
+          <div class="info">
+            <h3>Priya Dixit</h3>
+            <p>Video Editor </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="team-member">
+      <div class="team-img" style="background-image: url('IMAGES /PHOTO-2025-07-13-11-40-49.jpg');">
+        <div class="overlay">
+          <div class="info">
+            <h3>Milan</h3>
+            <p>Production Head </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="team-member">
+      <div class="team-img" style="background-image: url('IMAGES /PHOTO-2025-07-13-11-10-14.jpg');">
+        <div class="overlay">
+          <div class="info">
+            <h3>Manasvi </h3>
+            <p>Intern </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="team-member">
+      <div class="team-img" style="background-image: url('IMAGES /PHOTO-2025-07-13-11-13-36.jpg');">
+        <div class="overlay">
+          <div class="info">
+            <h3>Tejaswi </h3>
+            <p>Intern </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+  </div>
+</section>
+
+<style>
+.team-section {
+  padding: 80px 5%;
+  background: #fff;
+  text-align: center;
+}
+
+.team-section h2 {
+  font-size: 40px;
+  font-weight: 800;
+  color: #F12653;
+  margin-bottom: 10px;
+}
+
+.team-subtitle {
+  font-size: 16px;
+  color: #666;
+  margin-bottom: 40px;
+}
+
+.team-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+}
+
+.team-member {
+  width: 250px;
+  height: 320px;
+  border-radius: 20px;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease;
+}
+
+.team-member:hover {
+  transform: translateY(-10px);
+}
+
+.team-img {
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+.overlay {
+  background: linear-gradient(to top, rgba(241, 38, 83, 0.7), rgba(241, 38, 83, 0.1));
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  bottom: 0;
+  display: flex;
+  align-items: flex-end;
+  padding: 20px;
+  transition: background 0.3s ease;
+}
+
+.team-member:hover .overlay {
+  background: linear-gradient(to top, rgba(241, 38, 83, 0.9), rgba(241, 38, 83, 0.2));
+}
+
+.info {
+  color: #fff;
+  text-align: left;
+}
+
+.info h3 {
+  font-size: 20px;
+  margin: 0 0 5px;
+  font-weight: 700;
+}
+
+.info p {
+  font-size: 14px;
+  margin: 0;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .team-member {
+    width: 90%;
+  }
+}
+</style>
+
+
+ 
+
+<section style="background: linear-gradient(to bottom, #fffdf6, #F12653); padding: 80px 20px;">
+  <div style="max-width: 1000px; margin: auto; display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 40px;">
+    
+    <!-- Labrador Image -->
+    <div style="flex: 1 1 300px; text-align: center;">
+      <img src="IMAGES /ChatGPT Image Jul 13, 2025, 11_04_37 AM.png" alt="Labra with Money" style="max-width: 100%; border-radius: 16px; box-shadow: 0 4px 30px rgba(0,0,0,0.1);" />
+     
+    </div>
+
+    <!-- Form Section -->
+    <div style="flex: 1 1 400px;">
+      <h2 style="color: #f12653; font-size: 30px; margin-bottom: 8px;">Request Callback!</h2>
+      <h3 style="font-size: 18px; font-weight: bold; margin-bottom: 8px;"> Send those bucks to me, let’s talk business!</h3>
+
+      <form action="https://api.web3forms.com/submit" method="POST" style="background: #fff; padding: 30px; border-radius: 12px; box-shadow: 0 4px 24px rgba(0,0,0,0.08);">
+        <input type="hidden" name="access_key" value="db00c4ba-90f6-4ea0-b857-7523bf8a7b5a" />
+        <input type="hidden" name="subject" value="New Callback Request" />
+        <input type="hidden" name="from_name" value="Social Hikers Website" />
+
+        <input type="text" name="name" placeholder="Your Name" required style="width:100%; padding:12px; margin-bottom:14px; border:1px solid #ddd; border-radius:8px;">
+        <input type="tel" name="phone" placeholder="Phone Number" required style="width:100%; padding:12px; margin-bottom:14px; border:1px solid #ddd; border-radius:8px;">
+        <input type="email" name="email" placeholder="Email Address" required style="width:100%; padding:12px; margin-bottom:14px; border:1px solid #ddd; border-radius:8px;">
+        <textarea name="message" placeholder="Your Message" rows="4" required style="width:100%; padding:12px; margin-bottom:18px; border:1px solid #ddd; border-radius:8px;"></textarea>
+        <button type="submit" style=" display: inline-block;
+  padding: 10px 20px;
+  background-color: #000;
+  color: #fff;
+  font-weight: 600;
+  text-decoration: none;
+  border: 2px solid transparent;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 0 #ff2c7d; /* pinkish bottom shadow */">Request Callback</button>
+        <p style="margin-top: 20px; font-size: 16px; font-weight: bold;">OR CALL US AT +91 74539 79071</p>
+      </form>
+
+
+    </div>
+  </div>
+</section>
+
+
+
+  <script>
+    document.querySelector('.menu-toggle')
+      .addEventListener('click', () => {
+        const nav = document.querySelector('nav.main-nav');
+        nav.style.display = nav.style.display === 'flex' ? 'none' : 'flex';
+      });
+  </script>
+
+
+  <footer class="footer">
+  <div class="footer-container">
+    <!-- Logo and Tagline -->
+    <div class="footer-brand">
+<img src="IMAGES /logo-white png.png" alt="Social Hikers Logo" style="width: 90px;" />
+      <p>Making things memetastic & promoting with joy ✨</p>
+    </div>
+
+    <!-- Services Section -->
+    <div class="footer-links">
+      <h4>Services</h4>
+      <ul>
+        <li>Media</li>
+        <li>Marketing</li>
+        <li>Tech</li>
+        <li>Contact</li>
+      </ul>
+    </div>
+
+    <!-- Contact Info -->
+    <div class="footer-contact">
+      <h4>Contact</h4>
+      <ul>
+        <li>📞 +91 74539 79071</li>
+        <li>📧 hello@socialhikers</li>
+        <li>📍 New Nehru Nagar, Roorkee<br>Opp Sahrang Hospital<br>Roorkee 247667</li>
+      </ul>
+    </div>
+
+    <!-- Social Media -->
+    <div class="footer-social">
+      <h4>Follow Us</h4>
+      <a href="https://www.instagram.com/socialhiker.in/?hl=en" target="_blank">Instagram</a>
+      <a href="https://www.linkedin.com/company/socialhikers/" target="_blank">LinkedIn</a>
+    </div>
+  </div>
+
+  <!-- Bottom Note -->
+  <div class="footer-bottom">
+    © 2025 | Social Hikers | All Rights Reserved
+  </div>
+</footer>
+
+
+<style>
+
+  .footer {
+  background: black;
+  color: #fff;
+  padding: 40px 20px 20px;
+  font-family: 'Arial', sans-serif;
+}
+
+.footer-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.footer-brand img {
+  width: 140px;
+  margin-bottom: 10px;
+}
+
+.footer-brand p {
+  max-width: 220px;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #ccc;
+}
+
+.footer-links,
+.footer-contact,
+.footer-social {
+  min-width: 180px;
+}
+
+.footer h4 {
+  font-size: 16px;
+  margin-bottom: 10px;
+  color: #fff;
+}
+
+.footer ul {
+  list-style: none;
+  padding: 0;
+  font-size: 14px;
+  line-height: 1.8;
+  color: #ccc;
+}
+
+.footer a {
+  display: block;
+  font-size: 14px;
+  color: #ccc;
+  text-decoration: none;
+  margin-bottom: 6px;
+}
+
+.footer a:hover {
+  color: #fff;
+}
+
+.footer-bottom {
+  text-align: center;
+  border-top: 1px solid #333;
+  padding-top: 15px;
+  margin-top: 30px;
+  font-size: 13px;
+  color: #777;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .footer-container {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .footer-brand img {
+    width: 120px;
+  }
+
+  .footer-brand,
+  .footer-links,
+  .footer-contact,
+  .footer-social {
+    width: 100%;
+  }
+
+  .footer a {
+    margin-bottom: 8px;
+  }
+}
+
+
+
+</style>
+</body>
+</html> 
